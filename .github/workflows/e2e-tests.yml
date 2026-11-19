@@ -1,0 +1,41 @@
+name: E2E tests
+
+on:
+  push:
+  pull_request:
+  # The test runs against the live site, so a daily run also catches changes on Solflare's side.
+  schedule:
+    - cron: '0 6 * * *'
+  # Adds a "Run workflow" button in the Actions tab.
+  workflow_dispatch:
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: e2e
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: e2e/package-lock.json
+
+      # Firefox is preinstalled on GitHub's Ubuntu runners and WebdriverIO downloads geckodriver.
+      # Headless Firefox, because solflare.com refuses headless Chrome.
+      - run: npm ci
+      - run: npm run test:headless
+
+      # Keep the log and any failure screenshots, also when the test fails.
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-logs-and-screenshots
+          path: |
+            e2e/logs/
+            e2e/screenshots/
+          if-no-files-found: ignore
+          retention-days: 14

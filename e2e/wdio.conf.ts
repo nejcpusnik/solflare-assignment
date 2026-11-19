@@ -25,6 +25,10 @@ export const config: WebdriverIO.Config = {
   // Browser drivers are downloaded automatically by WebdriverIO,
   // so nothing has to be installed on the machine except Node.js and the browser.
   capabilities: browserNames.map((browserName) => buildCapability(browserName, headless)),
+  // On Linux, WebdriverIO wraps headless runs in a virtual display (xvfb-run) by default.
+  // Headless browsers do not need one, and the wrapper breaks the worker's connection
+  // to the launcher on GitHub's Ubuntu runners, so the test never starts.
+  autoXvfb: false,
 
   baseUrl: 'https://solflare.com',
   logLevel: 'warn',

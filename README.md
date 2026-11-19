@@ -80,6 +80,7 @@ e2e/
 - **Logger:** winston; every page action is logged to the console and to `e2e/logs/test-run.log`. Passwords are never logged.
 - **Screenshot on failure:** a generic `afterTest` hook saves a screenshot of any failed test to `e2e/screenshots/`, named after the test, browser and time.
 - **Command line:** browser and headless mode are command line arguments.
+- **CI:** the test runs in GitHub Actions ([`.github/workflows/e2e-tests.yml`](./.github/workflows/e2e-tests.yml)) in headless Firefox, on every push and pull request, once a day, and on demand from the Actions tab. The log and any failure screenshots are kept as a downloadable artifact.
 
 ### Notes
 
@@ -107,7 +108,7 @@ npx playwright test portfolio-tokens
 npx playwright test -g "Scenario 2"
 ```
 
-**CI:** the API tests run in GitHub Actions ([`.github/workflows/api-tests.yml`](./.github/workflows/api-tests.yml)) on every push and pull request, once a day, and on demand from the Actions tab. The HTML report of each run is kept as a downloadable artifact. The E2E test is not run there, because solflare.com's bot protection is likely to refuse browsers coming from GitHub's servers.
+**CI:** the API tests run in GitHub Actions ([`.github/workflows/api-tests.yml`](./.github/workflows/api-tests.yml)) on every push and pull request, once a day, and on demand from the Actions tab. The HTML report of each run is kept as a downloadable artifact.
 
 **Authorization:** as the app does, the suite generates a uuid4 once per run and sends it as `Authorization: Bearer {uuid4}` on every request (`playwright.config.ts`).
 
