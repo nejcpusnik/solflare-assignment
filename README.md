@@ -65,7 +65,8 @@ e2e/
 └── test/
     ├── specs/                    the test
     ├── pageobjects/              page objects (only what the test needs)
-    │   └── walletRow.ts          wallet row selector and address reader shared by two panels
+    │   └── components/
+    │       └── walletRow.ts      wallet row selector and address reader shared by two panels
     ├── data/testData.ts          test data
     └── utils/
         ├── logger.ts             winston logger (console + logs/test-run.log)
