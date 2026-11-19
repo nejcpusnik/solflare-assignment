@@ -106,6 +106,8 @@ npx playwright test portfolio-tokens
 npx playwright test -g "Scenario 2"
 ```
 
+**CI:** the API tests run in GitHub Actions ([`.github/workflows/api-tests.yml`](./.github/workflows/api-tests.yml)) on every push and pull request, once a day, and on demand from the Actions tab. The HTML report of each run is kept as a downloadable artifact. The E2E test is not run there, because solflare.com's bot protection is likely to refuse browsers coming from GitHub's servers.
+
 **Authorization:** as the app does, the suite generates a uuid4 once per run and sends it as `Authorization: Bearer {uuid4}` on every request (`playwright.config.ts`).
 
 ### Test cases
@@ -163,6 +165,6 @@ npx playwright test -g "Scenario 2"
 
 ## With more time
 
-- Run both suites in GitHub Actions on every push and on a schedule.
+- Run the E2E test in CI as well, once it is clear whether solflare.com accepts browsers from CI servers (or allow-lists test traffic).
 - Add JSON schema validation for the two responses, to catch breaking changes in the API contract.
 - Add more E2E checks around the same flow: hiding a wallet again, and that the selection is still there after a page reload.
