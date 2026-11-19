@@ -69,9 +69,11 @@ class OnboardingPage extends Page {
     }
   }
 
-  /** Enters the same password into both password fields. */
   async enterPassword(password: string): Promise<void> {
     await this.type(this.newPasswordInput, password, 'new password field');
+  }
+
+  async reEnterPassword(password: string): Promise<void> {
     await this.type(this.repeatPasswordInput, password, 'repeat password field');
   }
 

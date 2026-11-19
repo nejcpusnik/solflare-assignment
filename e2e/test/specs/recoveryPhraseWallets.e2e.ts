@@ -13,8 +13,11 @@ describe('Wallet management: recovery phrase wallets', () => {
     // Step 2: click "Get started"
     await OnboardingPage.startWalletCreation();
 
-    // Steps 3-4: enter the password and repeat it
+    // Step 3: enter the password
     await OnboardingPage.enterPassword(testData.walletPassword);
+
+    // Step 4: repeat the password
+    await OnboardingPage.reEnterPassword(testData.walletPassword);
 
     // Step 5: agree to the Terms of Service and Privacy Policy
     await OnboardingPage.acceptTerms();
