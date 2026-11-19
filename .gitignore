@@ -2,4 +2,7 @@ node_modules/
 # WebdriverIO output
 e2e/logs/
 e2e/screenshots/
+# Playwright output
+api/test-results/
+api/playwright-report/
 .DS_Store
