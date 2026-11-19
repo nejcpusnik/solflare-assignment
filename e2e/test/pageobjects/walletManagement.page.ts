@@ -1,6 +1,6 @@
 import { $, browser } from '@wdio/globals';
 import Page from './page.js';
-import { WALLET_ROW_SELECTOR, getWalletAddress } from './walletRow.js';
+import { WALLET_ROW_SELECTOR, getWalletAddress } from './components/walletRow.js';
 
 /** "My wallets" panel: lists the wallets grouped by recovery phrase. */
 class WalletManagementPage extends Page {

@@ -1,6 +1,6 @@
 import { $, browser } from '@wdio/globals';
 import Page from './page.js';
-import { WALLET_ROW_SELECTOR, getWalletAddress } from './walletRow.js';
+import { WALLET_ROW_SELECTOR, getWalletAddress } from './components/walletRow.js';
 
 /** "Show or hide wallets" panel: one row with a toggle for every wallet of the recovery phrase. */
 class ShowOrHideWalletsPage extends Page {
